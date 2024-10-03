@@ -1,0 +1,70 @@
+<div class="container mx-auto p-4">
+  <h1 class="text-2xl font-bold mb-6 text-jade-800">Lista de Vacunas</h1>
+
+  <form
+    (ngSubmit)="createVaccine()"
+    class="mb-4 p-4 border rounded-lg shadow-lg bg-jade-50"
+  >
+    <h2 class="text-lg font-semibold mb-4 text-jade-700">Crear Nueva Vacuna</h2>
+
+    <div class="flex flex-col mb-4">
+      <label for="name" class="font-medium text-jade-700"
+        >Nombre de la Vacuna:</label
+      >
+      <input
+        type="text"
+        id="name"
+        [(ngModel)]="newVaccine.name"
+        name="name"
+        required
+        class="input input-bordered w-full border-jade-300"
+      />
+    </div>
+    <div class="flex flex-col mb-4">
+      <label for="maxAge" class="font-medium text-jade-700">Edad Máxima:</label>
+      <input
+        type="number"
+        id="maxAge"
+        [(ngModel)]="newVaccine.maxAge"
+        name="maxAge"
+        required
+        class="input input-bordered w-full border-jade-300"
+      />
+    </div>
+    <button
+      type="submit"
+      class="btn bg-jade-500 text-white hover:bg-jade-600 transition duration-200 p-3 rounded-[10px] shadow-md"
+    >
+      Aplicar Vacuna
+    </button>
+  </form>
+
+  <div class="flex items-center justify-between mb-2">
+    <h2 class="text-lg font-semibold text-color to-black">
+      Vacunas Disponibles:
+    </h2>
+    <div
+      class="flex items-center justify-center w-10 h-10 rounded-full bg-jade-300 text-black font-bold"
+    >
+      {{ vaccines.length }}
+    </div>
+  </div>
+
+  <ul class="space-y-2">
+    <li
+      *ngFor="let vaccine of vaccines"
+      class="border p-4 rounded-md shadow bg-jade-100 flex justify-between items-center"
+    >
+      <div>
+        <span class="text-jade-800">{{ vaccine.name }}</span> -
+        <span class="text-jade-600">Edad Máxima: {{ vaccine.maxAge }}</span>
+      </div>
+      <button 
+        class="text-red-500 hover:text-red-700 ml-4"
+        (click)="deleteVaccine(vaccine.id)">
+        &times; 
+        
+      </button>
+    </li>
+  </ul>
+</div>
